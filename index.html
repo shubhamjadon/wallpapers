@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Daily Wallpapers</title>
+  <link rel="stylesheet" href="assets/css/style-min.css">
+  <script src="assets/js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="main">
+
+    <!-- No results page -->
+    <transition name="fade">
+      <div class="no-result" v-show="!result">
+        <img src="assets/images/empty_state.png">
+        <h2>No results found!</h2>
+        <button @click="this.goHome">Go Home</button>
+      </div>
+    </transition>
+
+    <!-- Loading Bar -->
+    <transition name="fade">
+      <div class="loading-bar" v-show="applying">
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Search Screen -->
+    <div class="search" v-show="searching">
+      <span class="closebtn" @click="searchToggle" title="Close Search">×</span>
+      <div class="search-content">
+        <input type="text" ref="input" placeholder="Type and press enter...." name="search" @keyup.enter="search" autofocus>
+      </div>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="grid">
+      <img v-for="photo in photos" :key="photo.id" :src="photo.url" @click="applyPhoto(photo.url)">
+    </div>
+
+    <!-- Photos Loader -->
+    <div class="lds-ellipsis" v-show="link">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div>
+  <script>
+    require('./renderer.js')
+  </script>
+
+</body>
+
+</html>
