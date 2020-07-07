@@ -13,7 +13,7 @@
   },
   "author": "Kavish Jadon",
   "devDependencies": {
-    "electron": "^4.0.2",
+    "electron": "^9.1.0",
     "electron-packager": "^13.0.1",
     "electron-winstaller": "^3.0.4"
   },
